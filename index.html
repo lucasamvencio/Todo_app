@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚡ TaskFlow</title>
+  <title>✅ To-Do List</title>
   
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
@@ -327,19 +327,21 @@
     .btn-cancel { background: #e2e8f0; color: var(--text-main); }
     .btn-confirm { background: var(--primary); color: white; }
 
+    /* --- COMPUTADOR EXPANDIDO (TELA GRANDE) --- */
     @media (min-width: 768px) {
       body {
-        padding: 40px 20px;
+        padding: 40px;
         background-color: #e2e8f0;
       }
 
       .app-container {
-        max-width: 1000px;
-        min-height: 80vh;
+        width: 100%;
+        max-width: 1400px;
+        min-height: 85vh;
         border-radius: 16px;
         box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
         display: grid;
-        grid-template-columns: 260px 1fr;
+        grid-template-columns: 280px 1fr;
         grid-template-rows: auto 1fr;
         grid-template-areas:
           "header header"
@@ -347,7 +349,14 @@
         overflow: hidden;
       }
 
-      .app-header { grid-area: header; }
+      .app-header { 
+        grid-area: header; 
+        padding: 24px 40px;
+      }
+      
+      .app-header h1 {
+        font-size: 1.6rem;
+      }
 
       .tabs-navigation {
         grid-area: nav;
@@ -357,16 +366,17 @@
         background: var(--bg-primary);
         border-bottom: none;
         border-right: 1px solid var(--border-color);
-        padding: 24px 16px;
-        gap: 8px;
+        padding: 32px 20px;
+        gap: 12px;
       }
 
       .tab-button {
         display: flex;
         justify-content: space-between;
         width: 100%;
-        border-radius: 8px;
-        padding: 12px 16px;
+        border-radius: 10px;
+        padding: 14px 18px;
+        font-size: 0.95rem;
         border: 1px solid transparent;
       }
       
@@ -375,7 +385,7 @@
 
       .app-content {
         grid-area: main;
-        padding: 40px;
+        padding: 48px;
       }
     }
   </style>
@@ -485,7 +495,7 @@
       return (
         <div className="app-container">
           <header className="app-header">
-            <h1>⚡ TaskFlow</h1>
+            <h1>✅ To-Do List</h1>
             <button className="btn-add-tab" onClick={() => setShowAddTabModal(true)}>+ Nova Aba</button>
           </header>
 
@@ -519,7 +529,7 @@
                 ) : (
                   Object.keys(groupedTasks).map(groupName => (
                     <div key={groupName} className="task-group">
-                      <h4 className="group-title">📁 {groupName}</h4>
+                      <h4 className="group-title">📂 {groupName}</h4>
                       <div className="tasks-list">
                         {groupedTasks[groupName].map(task => (
                           <div key={task.id} className="task-item">
